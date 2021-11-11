@@ -8,10 +8,10 @@ const mail = new JSONdb('/mail.json')
 const ProgressBar = require('cli-simple-progress');
 var cred = {}
 const bar = new ProgressBar({
-    width: 30,
+    width: 100,
     template: `CLI Progress | ${chalk.bgCyan('{complete}')}${chalk.bgWhite('{incomplete}')} | {percent}% | {current}/{total}`,
-    complete: ' ',
-    incomplete: ' '
+    complete: '=',
+    incomplete: '_'
   });
 
 
@@ -41,6 +41,7 @@ mail.set("mail",array)
 
 // control bars
 async function main (){
+console.time("concat")
 var file =fs.readdirSync("./txt")
 
 
@@ -50,5 +51,6 @@ const element = file[index];
 await analyse(element)
 }
 mail.set("mail",array)
+console.timeEnd("concat")
 } 
 main()
